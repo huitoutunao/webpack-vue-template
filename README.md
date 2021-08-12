@@ -11,6 +11,8 @@ yarn init -y
 npm init -y
 ```
 
+关于 `package.json` 文件的字段说明，[戳这里](http://nodejs.cn/learn/the-package-json-guide#dependencies)。
+
 2、安装 `webpack` 和 `webpack-cli`
 ```sh
 yarn install -D webpack webpack-cli

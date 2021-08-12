@@ -15,6 +15,8 @@ module.exports = {
         // [name] 指入口名称
         // [contenthash] 指 hash 值，默认 20 位
         filename: '[name].[contenthash:16].js',
+
+        // 输出目录
         path: path.resolve(__dirname, 'dist')
     }
 }
