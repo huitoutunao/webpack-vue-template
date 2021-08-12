@@ -1,13 +1,20 @@
 {
-    "name": "webpack-vue-template",
-    "version": "1.0.0",
-    "description": "webpack5 vue template",
-    "private": true,
-    "scripts": {
-        "build": "webpack"
-    },
-    "devDependencies": {
-        "webpack": "^5.50.0",
-        "webpack-cli": "^4.7.2"
-    }
+  "name": "webpack-vue-template",
+  "version": "1.0.0",
+  "description": "webpack5 vue template",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.50.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
