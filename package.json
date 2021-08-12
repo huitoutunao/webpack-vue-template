@@ -1,14 +1,16 @@
 {
-  "name": "webpack-vue-template",
-  "version": "1.0.0",
-  "description": "webpack5 vue template",
-  "main": "index.js",
-  "repository": "git@huitoutunao:huitoutunao/webpack-vue-template.git",
-  "author": "huitoutunao",
-  "license": "MIT",
-  "private": true,
-  "devDependencies": {
-    "webpack": "^5.50.0",
-    "webpack-cli": "^4.7.2"
-  }
+    "name": "webpack-vue-template",
+    "version": "1.0.0",
+    "description": "webpack5 vue template",
+    "repository": "git@huitoutunao:huitoutunao/webpack-vue-template.git",
+    "author": "huitoutunao",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "build": "webpack"
+    },
+    "devDependencies": {
+        "webpack": "^5.50.0",
+        "webpack-cli": "^4.7.2"
+    }
 }
