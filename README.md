@@ -15,5 +15,5 @@ npm init -y
 
 2、安装 `webpack` 和 `webpack-cli`
 ```sh
-yarn install -D webpack webpack-cli
+yarn add -D webpack webpack-cli
 ```
