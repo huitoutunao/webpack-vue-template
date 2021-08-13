@@ -104,7 +104,7 @@ npm install -D @babel/core babel-loader @babel/preset-env
 }
 ```
 
-4、`webpack.config.js` 文件配置如下：
+4、在 `webpack.config.js` 文件配置如下：
 ```js
 ...
 ```
