@@ -6,7 +6,7 @@ module.exports = {
     app: './src/main.js'
   },
   output: {
-    filename: '[name].[contenthash:16].js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
   }
 }
