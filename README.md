@@ -25,14 +25,14 @@ npm install -D webpack webpack-cli
 - `-D` 指的是 `--save-dev`，安装开发环境所需依赖。
 - `-S` 指的是 `--save`，安装生产环境所需依赖。
 
-在 src 文件夹内创建 main.js 文件，文件内容如下：
+3、在 `src` 文件夹内创建 `main.js` 文件，文件内容如下：
 ```js
 // ./src/main.js
 
 console.log('Hello world!')
 ```
 
-在根目录创建 `webpack.config.js` 文件，配置参数如下：
+4、在根目录创建 `webpack.config.js` 文件，配置参数如下：
 ```js
 // ./webpack.config.js
 
@@ -60,7 +60,7 @@ module.exports = {
 }
 ```
 
-在 `package.json` 文件添加 `scripts` 字段如下：
+5、在 `package.json` 文件添加 `scripts` 字段如下：
 ```json
 // ...省略代码
 "scripts": {
@@ -72,6 +72,37 @@ module.exports = {
 运行命令 `npm run build` 可以看到已经将文件打包放在 dist 文件夹内了。
 
 ## ES6+ 转换 ES5
+
+1、在 `package.json` 文件添加 `browserslist` 字段如下：
+```json
+// ...省略代码
+"browserslist": [
+  "> 1%", // 超过 1% 人使用的浏览器
+  "last 2 versions" // 每个浏览器的最后 2 个版本（如 IE 11、IE 10）
+]
+// ...省略代码
+```
+
+browserslist 是在不同的前端工具之间共用目标浏览器和 node 版本的配置工具，它使用 [Can I Use](https://www.caniuse.com/) 网站的数据来查询浏览器版本范围，其他字段说明可以[戳这里](https://github.com/browserslist/browserslist#queries)。
+
+2、安装 `@babel/core babel-loader @babel/preset-env` 依赖
+```sh
+yarn add -D @babel/core babel-loader @babel/preset-env
+或
+npm install -D @babel/core babel-loader @babel/preset-env
+```
+
+这个 `@babel/core` 是核心依赖包，webpack 转译 `.js` 底层都是通过 Node 来调用 `@babel/core` 相关功能 API 来进行的。
+
+这个 `@babel/preset-env` 是 Babel 的智能预设，可以根据我们设定的目标环境进行针对性转码。
+
+3、根目录创建 `babel.config.json` 文件，配置参数如下：
+```json
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": []
+}
+```
 
 ## 结语
 
