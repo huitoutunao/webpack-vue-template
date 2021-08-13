@@ -104,6 +104,11 @@ npm install -D @babel/core babel-loader @babel/preset-env
 }
 ```
 
+4、`webpack.config.js` 文件配置如下：
+```js
+...
+```
+
 ## 结语
 
 以这个项目为例，说下我对安装依赖包的理解，具体这个依赖包是该安装在开发环境还是生产环境。
