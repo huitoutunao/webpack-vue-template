@@ -1,4 +1,5 @@
 const path = require('path')
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   mode: 'development',
@@ -11,11 +12,21 @@ module.exports = {
   },
   module: {
     rules: [{
+      test: /\.vue$/,
+      use: {
+        loader: 'vue-loader'
+      },
+      include: path.resolve(__dirname, 'src')
+    }, {
       test: /\.js$/,
       use: {
         loader: 'babel-loader'
       },
       exclude: path.resolve(__dirname, 'node_modules')
     }]
-  }
+  },
+  plugins: [
+    // 请确保引入这个插件！
+    new VueLoaderPlugin()
+  ]
 }

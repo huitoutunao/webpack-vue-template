@@ -134,6 +134,20 @@ module: {
 }
 ```
 
+## 识别 vue 文件
+
+1、因为这个是 `vue2.x` 的项目模板，所以转译 vue 文件是必须的，下面是安装相关转译器：
+```sh
+yarn add vue
+或
+npm install -S vue
+```
+```sh
+yarn add -D vue-loader vue-template-compiler
+或
+npm install -D vue-loader vue-template-compiler
+```
+
 ## 结语
 
 以这个项目为例，说下我对安装依赖包的理解，具体这个依赖包是该安装在开发环境还是生产环境。
