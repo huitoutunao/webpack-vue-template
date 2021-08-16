@@ -125,14 +125,14 @@ module: {
   rules: [{
     test: /\.js$/,
     use: {
-      loader: 'babel-loader'
+      loader: 'babel-loader' // 在前面已经安装了
     },
+
+    // 排除 node_modules 文件夹，为了打包编译速度加快
     exclude: path.resolve(__dirname, 'node_modules')
   }]
 }
 ```
-
-exclude 是排除 `node_modules` 文件夹，为了打包编译速度加快。`babel-loader` 已经在前面安装了，所以直接写上就好。
 
 ## 结语
 
