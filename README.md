@@ -78,31 +78,61 @@ module.exports = {
 // ...省略代码
 "browserslist": [
   "> 1%", // 超过 1% 人使用的浏览器
-  "last 2 versions" // 每个浏览器的最后 2 个版本（如 IE 11、IE 10）
+  "last 2 versions", // 每个浏览器的最后 2 个版本（如 IE 11、IE 10）
+  "not ie <= 8"
 ]
 // ...省略代码
 ```
 
 browserslist 是在不同的前端工具之间共用目标浏览器和 node 版本的配置工具，它使用 [Can I Use](https://www.caniuse.com/) 网站的数据来查询浏览器版本范围，其他字段说明可以[戳这里](https://github.com/browserslist/browserslist#queries)。
 
-2、安装 `@babel/core babel-loader @babel/preset-env` 依赖
+2、安装 `@babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime @babel/runtime` 依赖
 ```sh
-yarn add -D @babel/core babel-loader @babel/preset-env
+yarn add -D @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime
 或
-npm install -D @babel/core babel-loader @babel/preset-env
+npm install -D @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime
+```
+```sh
+yarn add -S @babel/runtime
+或
+npm install -S @babel/runtime
 ```
 
 这个 `@babel/core` 是核心依赖包，webpack 转译 `.js` 底层都是通过 Node 来调用 `@babel/core` 相关功能 API 来进行的。
 
 这个 `@babel/preset-env` 是 Babel 的智能预设，可以根据我们设定的目标环境进行针对性转码。
 
+这个 `@babel/plugin-transform-runtime` 可以自动帮我们从辅助函数包（@babel/runtime）里引入对应函数，也可以自动移除语法转换后内联的辅助函数，减少打包体积的同时没有污染全局环境，不会有任何冲突。因此我们可以使用它来替代 [polyfill](https://www.babeljs.cn/docs/babel-polyfill) 方式。
+
 3、根目录创建 `babel.config.json` 文件，配置参数如下：
 ```json
 {
   "presets": ["@babel/preset-env"],
-  "plugins": []
+  "plugins": [
+    ["@babel/plugin-transform-runtime", {
+      "corejs": 3
+    }]
+  ]
 }
 ```
+
+这个 [@babel/plugin-transform-runtime]() 配置参数可以点击链接查看，其中 `corejs: 3` 这个参数配置需要我们安装依赖 `yarn add @babel/runtime-corejs3 或 npm install -S @babel/runtime-corejs3`，目的是对相关 API 转换功能，例如 IE 浏览器兼容 Promise。
+
+4、配置 `webpack.config.js` 文件的 babel-loader 如下：
+```js
+// ...省略代码
+module: {
+  rules: [{
+    test: /\.js$/,
+    use: {
+      loader: 'babel-loader'
+    },
+    exclude: path.resolve(__dirname, 'node_modules')
+  }]
+}
+```
+
+exclude 是排除 `node_modules` 文件夹，为了打包编译速度加快。`babel-loader` 已经在前面安装了，所以直接写上就好。
 
 ## 结语
 

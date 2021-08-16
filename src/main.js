@@ -1,9 +1,17 @@
 var add = (x, y) => x + y
-var promise = Promise.resolve('result')
-console.log(promise)
+var res = add(1, 2)
+console.log(res)
 
 class Person {
   sayname() {
     return 'name'
   }
 }
+
+async function asyc () {
+  const cc = await 'hello world'
+  return cc
+}
+asyc()
+
+var promise = Promise.resolve('result')
