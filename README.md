@@ -93,7 +93,7 @@ yarn add -D @babel/core babel-loader @babel/preset-env @babel/plugin-transform-r
 npm install -D @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime
 ```
 ```sh
-yarn add -S @babel/runtime
+yarn add @babel/runtime
 或
 npm install -S @babel/runtime
 ```
