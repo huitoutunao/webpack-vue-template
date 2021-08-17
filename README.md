@@ -148,6 +148,85 @@ yarn add -D vue-loader vue-template-compiler
 npm install -D vue-loader vue-template-compiler
 ```
 
+2、在 `src` 目录下创建 `App.vue` 文件，模板如下：
+```vue
+<template>
+  <div id="app">
+    Hello World!
+  </div>
+</template>
+```
+```js
+// main.js
+import Vue from 'vue'
+import App from './App.vue'
+
+new Vue({
+  render: h => h(App)
+}).$mount('#app')
+```
+
+3、运行 `npm run webpack`，在 `dist` 文件夹创建 `index.html` 引入打包好的 `js` 文件，浏览器执行后可以看到 `Hello World!`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vue app</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./app.3d3d16e9d5b60a3ee217.js"></script>
+</body>
+</html>
+```
+
+## 处理样式
+
+1、安装基本依赖
+```sh
+yarn add -D vue-style-loader css-loader
+或
+npm install -D vue-style-loader css-loader
+```
+
+对应的 webpack 配置如下：
+```js
+module: {
+  rules: [
+    // ...省略代码
+    {
+      test: /\.css$/,
+      use: ['vue-style-loader', 'css-loader']
+    },
+    // ...省略代码
+  ]
+}
+```
+
+2、使用预处理器 Sass，安装相关依赖
+```sh
+yarn add -D sass-loader node-sass
+或
+npm install -D sass-loader node-sass
+```
+
+对应的 webpack 配置如下：
+```js
+module: {
+  rules: [
+    // ...省略代码
+    {
+      test: /\.scss$/,
+      use: ['vue-style-loader', 'css-loader', 'sass-loader']
+    },
+    // ...省略代码
+  ]
+}
+```
+
 ## 结语
 
 以这个项目为例，说下我对安装依赖包的理解，具体这个依赖包是该安装在开发环境还是生产环境。

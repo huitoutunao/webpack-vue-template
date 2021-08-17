@@ -23,6 +23,12 @@ module.exports = {
         loader: 'babel-loader'
       },
       exclude: path.resolve(__dirname, 'node_modules')
+    }, {
+      test: /\.css$/,
+      use: ['vue-style-loader', 'css-loader']
+    }, {
+      test: /\.scss$/,
+      use: ['vue-style-loader', 'css-loader', 'sass-loader']
     }]
   },
   plugins: [
