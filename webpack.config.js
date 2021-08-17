@@ -29,6 +29,39 @@ module.exports = {
     }, {
       test: /\.scss$/,
       use: ['vue-style-loader', 'css-loader', 'sass-loader']
+    }, {
+      test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+      type: 'asset',
+      generator: {
+        filename: 'static/images/[name][hash][ext][query]'
+      },
+      parser: {
+        dataUrlCondition: {
+          maxSize: 40 * 1024
+        }
+      }
+    }, {
+      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      type: 'asset',
+      generator: {
+        filename: 'static/fonts/[name][hash][ext][query]'
+      },
+      parser: {
+        dataUrlCondition: {
+          maxSize: 40 * 1024
+        }
+      }
+    }, {
+      test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      type: 'asset',
+      generator: {
+        filename: 'static/media/[name][hash][ext][query]'
+      },
+      parser: {
+        dataUrlCondition: {
+          maxSize: 40 * 1024
+        }
+      }
     }]
   },
   plugins: [

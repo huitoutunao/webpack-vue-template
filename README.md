@@ -148,6 +148,33 @@ yarn add -D vue-loader vue-template-compiler
 npm install -D vue-loader vue-template-compiler
 ```
 
+在 webpack 配置如下：
+```js
+const { VueLoaderPlugin } = require('vue-loader')
+
+module.exports = {
+  module: {
+    rules: [
+      // ...其它规则
+      {
+        test: /\.vue$/,
+        use: {
+          loader: 'vue-loader'
+        },
+        include: path.resolve(__dirname, 'src')
+      },
+      // ...其它规则
+    ]
+  },
+  plugins: [
+    // 请确保引入这个插件！
+    new VueLoaderPlugin()
+  ]
+}
+```
+
+引入 `VueLoaderPlugin` 插件的目的见[官网文档](https://vue-loader.vuejs.org/zh/guide/#%E6%89%8B%E5%8A%A8%E8%AE%BE%E7%BD%AE)
+
 2、在 `src` 目录下创建 `App.vue` 文件，模板如下：
 ```vue
 <template>
@@ -196,12 +223,12 @@ npm install -D vue-style-loader css-loader
 ```js
 module: {
   rules: [
-    // ...省略代码
+    // ...其它规则
     {
       test: /\.css$/,
       use: ['vue-style-loader', 'css-loader']
     },
-    // ...省略代码
+    // ...其它规则
   ]
 }
 ```
@@ -217,15 +244,69 @@ npm install -D sass-loader node-sass
 ```js
 module: {
   rules: [
-    // ...省略代码
+    // ...其它规则
     {
       test: /\.scss$/,
       use: ['vue-style-loader', 'css-loader', 'sass-loader']
     },
-    // ...省略代码
+    // ...其它规则
   ]
 }
 ```
+
+## 处理静态资源
+
+在 webpack 配置如下：
+```js
+module: {
+  rules: [
+    // ...其它规则
+    {
+      test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+      type: 'asset',
+      generator: {
+        filename: 'static/images/[name][hash][ext][query]'
+      },
+      parser: {
+        dataUrlCondition: {
+          maxSize: 40 * 1024 // 40kb
+        }
+      }
+    },
+    {
+      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      type: 'asset',
+      generator: {
+        filename: 'static/fonts/[name][hash][ext][query]'
+      },
+      parser: {
+        dataUrlCondition: {
+          maxSize: 40 * 1024
+        }
+      }
+    },
+    {
+      test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      type: 'asset',
+      generator: {
+        filename: 'static/media/[name][hash][ext][query]'
+      },
+      parser: {
+        dataUrlCondition: {
+          maxSize: 40 * 1024
+        }
+      }
+    },
+    // ...其它规则
+  ]
+}
+```
+
+具体细节可以[戳这里](https://webpack.docschina.org/guides/asset-modules/)看官网说明。
+
+`generator.filename` 这是输出文件路径，`[name]` 等变量可以[戳这里查看](https://webpack.docschina.org/loaders/file-loader/#placeholders)。
+
+`parser.dataUrlCondition.maxSize` 如果一个模块源码大小小于 maxSize，那么模块会被作为一个 Base64 编码的字符串注入到包中，否则模块文件会被生成到输出的目标目录中，须要配合 `type: 'asset'` 使用，例子[见官网](https://webpack.docschina.org/guides/asset-modules/#general-asset-type)。其实添加这个配置也是为了减少资源请求。
 
 ## 结语
 
