@@ -15,7 +15,7 @@ npm init -y
 
 关于 `package.json` 文件的字段说明，[戳这里](http://nodejs.cn/learn/the-package-json-guide#dependencies)。
 
-2、安装 `webpack` 和 `webpack-cli`
+2、安装 `webpack` 和 `webpack-cli`。
 ```sh
 yarn add -D webpack webpack-cli
 或
@@ -86,7 +86,7 @@ module.exports = {
 
 browserslist 是在不同的前端工具之间共用目标浏览器和 node 版本的配置工具，它使用 [Can I Use](https://www.caniuse.com/) 网站的数据来查询浏览器版本范围，其他字段说明可以[戳这里](https://github.com/browserslist/browserslist#queries)。
 
-2、安装 `@babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime @babel/runtime` 依赖
+2、安装 `@babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime @babel/runtime` 依赖。
 ```sh
 yarn add -D @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime
 或
@@ -212,7 +212,7 @@ new Vue({
 
 ## 处理样式
 
-1、安装基本依赖
+1、安装基本依赖。
 ```sh
 yarn add -D vue-style-loader css-loader
 或
@@ -233,7 +233,7 @@ module: {
 }
 ```
 
-2、使用预处理器 Sass，安装相关依赖
+2、使用预处理器 Sass，安装相关依赖。
 ```sh
 yarn add -D sass-loader node-sass
 或
@@ -307,6 +307,52 @@ module: {
 `generator.filename` 这是输出文件路径，`[name]` 等变量可以[戳这里查看](https://webpack.docschina.org/loaders/file-loader/#placeholders)。
 
 `parser.dataUrlCondition.maxSize` 如果一个模块源码大小小于 maxSize，那么模块会被作为一个 Base64 编码的字符串注入到包中，否则模块文件会被生成到输出的目标目录中，须要配合 `type: 'asset'` 使用，例子[见官网](https://webpack.docschina.org/guides/asset-modules/#general-asset-type)。其实添加这个配置也是为了减少资源请求。
+
+## 创建打包模板 html 文件
+
+前面我们看效果都是手动创建 `index.html` 文件，现在我们把这一步交给 webpack 处理，提高工程效率。
+
+1、安装 `html-webpack-plugin` 插件。
+```sh
+yarn add -D html-webpack-plugin
+或
+npm install -D html-webpack-plugin
+```
+
+配置 webpack 如下：
+```js
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  // ...其他配置
+  plugins: [
+    // ...其他插件
+    new HtmlWebpackPlugin({
+      title: 'vue start', // 标题
+      filename: 'index.html', // 输出文件名
+      template: './public/index.html' // 使用自定义模板
+    })
+  ]
+}
+```
+
+2、在根目录创建 public 文件夹存放 `index.html` 文件。
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
+```
+
+这个模板根据你项目实际情况可以修改，其中 `<%= htmlWebpackPlugin.options.title %>` 这个是配置动态网页标题。
 
 ## 结语
 

@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
@@ -65,7 +66,11 @@ module.exports = {
     }]
   },
   plugins: [
-    // 请确保引入这个插件！
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'vue start',
+      filename: 'index.html',
+      template: './public/index.html'
+    })
   ]
 }
