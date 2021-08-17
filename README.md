@@ -354,6 +354,47 @@ module.exports = {
 
 这个模板根据你项目实际情况可以修改，其中 `<%= htmlWebpackPlugin.options.title %>` 这个是配置动态网页标题。
 
+## 开发服务器
+
+每次打包后都需要手动的点击生成的 `index.html` 看效果，为了提高工程效率，我们把这一步交给 webpack 来处理。
+
+1、安装依赖 `webpack-dev-server`。
+```sh
+yarn add -D webpack-dev-server
+或
+npm install -D webpack-dev-server
+```
+
+配置 webpack 如下：
+```js
+module.exports = {
+  // ...其他配置
+  target: 'web',
+  devServer: {
+    hot: true,
+    port: 8080,
+    open: false,
+    progress: true,
+    contentBase: './dist'
+  },
+  // ...其他配置
+}
+```
+
+`package.json` 添加启动服务命令：
+```json
+{
+  // ...省略代码
+  "scripts": {
+    "serve": "webpack serve --inline",
+    "build": "webpack"
+  },
+  // ...省略代码
+}
+```
+
+[issuer](https://github.com/webpack/webpack-dev-server/issues/2758)
+
 ## 结语
 
 以这个项目为例，说下我对安装依赖包的理解，具体这个依赖包是该安装在开发环境还是生产环境。

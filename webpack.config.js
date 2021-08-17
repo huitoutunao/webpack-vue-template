@@ -11,6 +11,14 @@ module.exports = {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
   },
+  target: 'web',
+  devServer: {
+    hot: true,
+    port: 8080,
+    open: false,
+    progress: true,
+    contentBase: './dist'
+  },
   module: {
     rules: [{
       test: /\.vue$/,
