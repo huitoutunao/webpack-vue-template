@@ -393,6 +393,7 @@ module.exports = {
 }
 ```
 
+[webpack vue info](https://segmentfault.com/a/1190000014804826#articleHeader17)
 [issuer](https://github.com/webpack/webpack-dev-server/issues/2758)
 [chalk](https://www.npmjs.com/package/chalk)
 [portfinder](https://www.npmjs.com/package/portfinder)
