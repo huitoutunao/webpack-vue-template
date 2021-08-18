@@ -8,18 +8,18 @@ webpack5 搭建 vue2.x 项目模板。这个项目实践的目的是巩固自己
 
 1、初始化 `package.json` 文件。
 ```sh
-yarn init -y
-或
-npm init -y
+$ yarn init -y
+# 或
+$ npm init -y
 ```
 
 关于 `package.json` 文件的字段说明，[戳这里](http://nodejs.cn/learn/the-package-json-guide#dependencies)。
 
 2、安装 `webpack` 和 `webpack-cli`。
 ```sh
-yarn add -D webpack webpack-cli
-或
-npm install -D webpack webpack-cli
+$ yarn add -D webpack webpack-cli
+# 或
+$ npm install -D webpack webpack-cli
 ```
 
 - `-D` 指的是 `--save-dev`，安装开发环境所需依赖。
@@ -88,14 +88,14 @@ browserslist 是在不同的前端工具之间共用目标浏览器和 node 版�
 
 2、安装 `@babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime @babel/runtime` 依赖。
 ```sh
-yarn add -D @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime
-或
-npm install -D @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime
+$ yarn add -D @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime
+# 或
+$ npm install -D @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime
 ```
 ```sh
-yarn add @babel/runtime
-或
-npm install -S @babel/runtime
+$ yarn add @babel/runtime
+# 或
+$ npm install -S @babel/runtime
 ```
 
 这个 `@babel/core` 是核心依赖包，webpack 转译 `.js` 底层都是通过 Node 来调用 `@babel/core` 相关功能 API 来进行的。
@@ -138,14 +138,14 @@ module: {
 
 1、因为这个是 `vue2.x` 的项目模板，所以转译 vue 文件是必须的，下面是安装相关转译器：
 ```sh
-yarn add vue
-或
-npm install -S vue
+$ yarn add vue
+# 或
+$ npm install -S vue
 ```
 ```sh
-yarn add -D vue-loader vue-template-compiler
-或
-npm install -D vue-loader vue-template-compiler
+$ yarn add -D vue-loader vue-template-compiler
+# 或
+$ npm install -D vue-loader vue-template-compiler
 ```
 
 在 webpack 配置如下：
@@ -214,9 +214,9 @@ new Vue({
 
 1、安装基本依赖。
 ```sh
-yarn add -D vue-style-loader css-loader
-或
-npm install -D vue-style-loader css-loader
+$ yarn add -D vue-style-loader css-loader
+# 或
+$ npm install -D vue-style-loader css-loader
 ```
 
 对应的 webpack 配置如下：
@@ -235,9 +235,9 @@ module: {
 
 2、使用预处理器 Sass，安装相关依赖。
 ```sh
-yarn add -D sass-loader node-sass
-或
-npm install -D sass-loader node-sass
+$ yarn add -D sass-loader node-sass
+# 或
+$ npm install -D sass-loader node-sass
 ```
 
 对应的 webpack 配置如下：
@@ -314,9 +314,9 @@ module: {
 
 1、安装 `html-webpack-plugin` 插件。
 ```sh
-yarn add -D html-webpack-plugin
-或
-npm install -D html-webpack-plugin
+$ yarn add -D html-webpack-plugin
+# 或
+$ npm install -D html-webpack-plugin
 ```
 
 配置 webpack 如下：
@@ -360,9 +360,9 @@ module.exports = {
 
 1、安装依赖 `webpack-dev-server`。
 ```sh
-yarn add -D webpack-dev-server
-或
-npm install -D webpack-dev-server
+$ yarn add -D webpack-dev-server
+# 或
+$ npm install -D webpack-dev-server
 ```
 
 配置 webpack 如下：

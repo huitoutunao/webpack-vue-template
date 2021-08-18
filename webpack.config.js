@@ -11,13 +11,28 @@ module.exports = {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
   },
+  devtool: 'eval-cheap-module-source-map',
   target: 'web',
   devServer: {
+    clientLogLevel: 'warn',
+    host: '0.0.0.0',
     hot: true,
     port: 8080,
     open: false,
     progress: true,
-    contentBase: './dist'
+    compress: true,
+    useLocalIp: true,
+    contentBase: './dist',
+    stats: 'errors-only',
+    overlay: {
+      warnings: false,
+      errors: true
+    },
+    historyApiFallback: {
+      rewrites: [
+        { from: /.*/, to: '/public/index.html' }
+      ]
+    }
   },
   module: {
     rules: [{
