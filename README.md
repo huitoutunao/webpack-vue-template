@@ -394,6 +394,8 @@ module.exports = {
 ```
 
 [issuer](https://github.com/webpack/webpack-dev-server/issues/2758)
+[chalk](https://www.npmjs.com/package/chalk)
+[portfinder](https://www.npmjs.com/package/portfinder)
 
 ## 结语
 
