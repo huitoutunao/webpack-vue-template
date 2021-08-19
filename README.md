@@ -395,7 +395,9 @@ module.exports = {
 
 [webpack vue info](https://segmentfault.com/a/1190000014804826#articleHeader17)
 [issuer](https://github.com/webpack/webpack-dev-server/issues/2758)
+[friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin)
 [chalk](https://www.npmjs.com/package/chalk)
+[address](https://www.npmjs.com/package/address)
 [portfinder](https://www.npmjs.com/package/portfinder)
 
 ## 结语

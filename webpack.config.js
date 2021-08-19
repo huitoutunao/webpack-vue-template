@@ -14,7 +14,7 @@ module.exports = {
   devtool: 'eval-cheap-module-source-map',
   target: 'web',
   devServer: {
-    clientLogLevel: 'warn',
+    clientLogLevel: 'none',
     host: '0.0.0.0',
     hot: true,
     port: 8080,
