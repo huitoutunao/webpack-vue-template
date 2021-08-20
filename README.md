@@ -358,14 +358,23 @@ module.exports = {
 
 每次打包后都需要手动的点击生成的 `index.html` 看效果，为了提高工程效率，我们把这一步交给 webpack 来处理。
 
-1、安装依赖 `webpack-dev-server`。
+1、安装依赖 `webpack-dev-server webpack-merge`。
 ```sh
-$ yarn add -D webpack-dev-server
+$ yarn add -D webpack-dev-server webpack-merge
 # 或
-$ npm install -D webpack-dev-server
+$ npm install -D webpack-dev-server webpack-merge
 ```
 
-配置 webpack 如下：
+根目录创建 `build` 文件夹，接着将前面的配置内容拆分成公用、开发和生产等三个文件。
+```
+|- build
+  |- webpack.base.js
+  |- webpack.dev.js
+  |- webpack.prod.js
+|- src
+```
+
+配置 `webpack.base.js` 如下：
 ```js
 module.exports = {
   // ...其他配置
@@ -381,13 +390,21 @@ module.exports = {
 }
 ```
 
+配置 `webpack.dev.js` 如下：
+```js
+```
+
+配置 `webpack.prod.js` 如下：
+```js
+```
+
 `package.json` 添加启动服务命令：
 ```json
 {
   // ...省略代码
   "scripts": {
-    "serve": "webpack serve --inline",
-    "build": "webpack"
+    "serve": "webpack serve --inline --config build/webpack.dev.js",
+    "build": "webpack --config build/webpack.prod.js"
   },
   // ...省略代码
 }

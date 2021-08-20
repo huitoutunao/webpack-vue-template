@@ -2,37 +2,13 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
-module.exports = {
-  mode: 'development',
+let webpackConfig = {
   entry: {
     app: './src/main.js'
   },
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
-  },
-  devtool: 'eval-cheap-module-source-map',
-  target: 'web',
-  devServer: {
-    clientLogLevel: 'none',
-    host: '0.0.0.0',
-    hot: true,
-    port: 8080,
-    open: false,
-    progress: true,
-    compress: true,
-    useLocalIp: true,
-    contentBase: './dist',
-    stats: 'errors-only',
-    overlay: {
-      warnings: false,
-      errors: true
-    },
-    historyApiFallback: {
-      rewrites: [
-        { from: /.*/, to: '/public/index.html' }
-      ]
-    }
   },
   module: {
     rules: [{
@@ -87,13 +63,47 @@ module.exports = {
         }
       }
     }]
-  },
-  plugins: [
-    new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'vue start',
-      filename: 'index.html',
-      template: './public/index.html'
-    })
-  ]
+  }
+}
+
+module.exports = (env, argv) => {
+  if (argv.mode === 'development') {
+    webpackConfig.devtool = 'eval-cheap-module-source-map'
+    webpackConfig.target = 'web'
+    webpackConfig.devServer = {
+      clientLogLevel: 'none',
+      host: '0.0.0.0',
+      hot: true,
+      port: 8080,
+      open: false,
+      progress: true,
+      compress: true,
+      useLocalIp: true,
+      contentBase: './dist',
+      stats: 'errors-only',
+      overlay: {
+        warnings: false,
+        errors: true
+      },
+      historyApiFallback: {
+        rewrites: [
+          { from: /.*/, to: '/public/index.html' }
+        ]
+      }
+    }
+    webpackConfig.plugins = [
+      new VueLoaderPlugin(),
+      new HtmlWebpackPlugin({
+        title: 'vue start',
+        filename: 'index.html',
+        template: './public/index.html'
+      })
+    ]
+  }
+
+  if (argv.mode === 'production') {
+    console.log('production')
+  }
+
+  return webpackConfig
 }
