@@ -376,22 +376,130 @@ $ npm install -D webpack-dev-server webpack-merge
 
 配置 `webpack.base.js` 如下：
 ```js
+'use strict'
+const path = require('path')
+const { VueLoaderPlugin } = require('vue-loader')
+
 module.exports = {
-  // ...其他配置
-  target: 'web',
-  devServer: {
-    hot: true,
-    port: 8080,
-    open: false,
-    progress: true,
-    contentBase: './dist'
+  // 1
+  context: path.resolve(__dirname, '../'),
+  entry: {
+    app: './src/main.js'
   },
-  // ...其他配置
+
+  // 2
+  // context: path.resolve(__dirname, '../'),
+  entry: {
+    app: path.resolve(__dirname, '../src/main.js')
+  },
+
+  output: {
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, '../dist')
+  },
+  module: {
+    rules: [{
+      test: /\.vue$/,
+      use: {
+        loader: 'vue-loader'
+      },
+      include: path.resolve(__dirname, '../src')
+    }, {
+      test: /\.js$/,
+      use: {
+        loader: 'babel-loader'
+      },
+      exclude: path.resolve(__dirname, '../node_modules')
+    }, {
+      test: /\.css$/,
+      use: ['vue-style-loader', 'css-loader']
+    }, {
+      test: /\.scss$/,
+      use: ['vue-style-loader', 'css-loader', 'sass-loader']
+    }, {
+      test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+      type: 'asset',
+      generator: {
+        filename: 'static/images/[name][hash][ext][query]'
+      },
+      parser: {
+        dataUrlCondition: {
+          maxSize: 40 * 1024
+        }
+      }
+    }, {
+      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      type: 'asset',
+      generator: {
+        filename: 'static/fonts/[name][hash][ext][query]'
+      },
+      parser: {
+        dataUrlCondition: {
+          maxSize: 40 * 1024
+        }
+      }
+    }, {
+      test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+      type: 'asset',
+      generator: {
+        filename: 'static/media/[name][hash][ext][query]'
+      },
+      parser: {
+        dataUrlCondition: {
+          maxSize: 40 * 1024
+        }
+      }
+    }]
+  },
+  plugins: [
+    new VueLoaderPlugin()
+  ]
 }
 ```
 
 配置 `webpack.dev.js` 如下：
 ```js
+'use strict'
+const path = require('path')
+const { merge } = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const devWebpackConfig = merge(baseWebpackConfig, {
+  mode: 'development',
+  devtool: 'eval-cheap-module-source-map',
+  target: 'web', // https://github.com/webpack/webpack-dev-server/issues/2758
+  devServer: {
+    clientLogLevel: 'none',
+    host: '0.0.0.0',
+    hot: true,
+    port: 8080,
+    open: false,
+    progress: true,
+    compress: true,
+    useLocalIp: true,
+    contentBase: './dist',
+    stats: 'errors-only',
+    overlay: {
+      warnings: false,
+      errors: true
+    },
+    historyApiFallback: {
+      rewrites: [
+        { from: /.*/, to: '/public/index.html' }
+      ]
+    }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'vue start',
+      filename: 'index.html',
+      template: './public/index.html'
+    })
+  ]
+})
+
+module.exports = devWebpackConfig
 ```
 
 配置 `webpack.prod.js` 如下：

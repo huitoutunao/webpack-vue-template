@@ -4,7 +4,7 @@ const { merge } = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = merge(baseWebpackConfig, {
+const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
   target: 'web',
@@ -38,4 +38,4 @@ module.exports = merge(baseWebpackConfig, {
   ]
 })
 
-// module.exports = devWebpackConfig
+module.exports = devWebpackConfig
