@@ -504,6 +504,15 @@ module.exports = devWebpackConfig
 
 配置 `webpack.prod.js` 如下：
 ```js
+'use strict'
+const { merge } = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base')
+
+const prodWebpackConfig = merge(baseWebpackConfig, {
+  mode: 'production'
+})
+
+module.exports = prodWebpackConfig
 ```
 
 `package.json` 添加启动服务命令：
