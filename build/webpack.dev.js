@@ -8,21 +8,21 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
   target: 'web',
+  stats: 'errors-only',
   devServer: {
-    clientLogLevel: 'none',
-    host: '0.0.0.0',
+    static: false,
+    client: {
+      logging: 'none',
+      progress: true,
+      overlay: {
+        warnings: false,
+        errors: true
+      }
+    },
     hot: true,
     port: 8080,
-    open: false,
-    progress: true,
     compress: true,
-    useLocalIp: true,
-    contentBase: './dist',
-    stats: 'errors-only',
-    overlay: {
-      warnings: false,
-      errors: true
-    },
+    open: false,
     historyApiFallback: {
       rewrites: [
         { from: /.*/, to: '/public/index.html' }
