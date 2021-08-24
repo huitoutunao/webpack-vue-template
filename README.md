@@ -544,12 +544,50 @@ module.exports = prodWebpackConfig
 }
 ```
 
-[webpack vue info](https://segmentfault.com/a/1190000014804826#articleHeader17)
-[issuer](https://github.com/webpack/webpack-dev-server/issues/2758)
-[friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin)
-[chalk](https://www.npmjs.com/package/chalk)
-[address](https://www.npmjs.com/package/address)
-[portfinder](https://www.npmjs.com/package/portfinder)
+## 清除打包文件
+
+在生成文件之前清空 output 目录
+```js
+// webpack.base.js
+
+module.exports = {
+  // ...其他配置
+  output: {
+    clean: true
+  },
+  // ...其他配置
+}
+```
+
+## 生产环境打包压缩文件
+
+主要在 `webpack.prod.js` 添加配置。
+
+1、压缩 `html`
+```js
+'use strict'
+const { merge } = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const prodWebpackConfig = merge(baseWebpackConfig, {
+  mode: 'production',
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'vue start',
+      filename: 'index.html',
+      template: './public/index.html',
+      minify: {
+        collapseWhitespace: true, // 去除冗余空格
+        removeComments: true, // 去除注释
+        removeRedundantAttributes: true // 去除冗余属性
+      }
+    })
+  ]
+})
+
+module.exports = prodWebpackConfig
+```
 
 ## 结语
 
@@ -570,3 +608,12 @@ module.exports = prodWebpackConfig
 
 - [深入浅出 Webpack](https://webpack.wuhaolin.cn/)
 - [从零使用 Webpack5 搭建一个完整的 Vue3 的开发环境](https://juejin.cn/post/6924180659829211143)
+
+## 优化控制台信息参考资料
+
+[webpack vue info](https://segmentfault.com/a/1190000014804826#articleHeader17)
+[issuer](https://github.com/webpack/webpack-dev-server/issues/2758)
+[friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin)
+[chalk](https://www.npmjs.com/package/chalk)
+[address](https://www.npmjs.com/package/address)
+[portfinder](https://www.npmjs.com/package/portfinder)
