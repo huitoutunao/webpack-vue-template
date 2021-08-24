@@ -468,22 +468,39 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
-  target: 'web',
+
+  // 只在发生错误时输出
   stats: 'errors-only',
   devServer: {
+    // 该配置项允许配置从目录提供静态文件的选项
     static: false,
     client: {
+      // 允许在浏览器中设置日志级别
       logging: 'none',
+
+      // 在浏览器中以百分比显示编译进度
       progress: true,
+
+      // 当出现编译错误或警告时，在浏览器中显示全屏覆盖
       overlay: {
         warnings: false,
         errors: true
       }
     },
+
+    // 启用 webpack 的热模块替换
     hot: true,
-    port: 8080,
+
+    // 指定监听请求的端口号，port 配置项不能设置为 null 或者空字符串，要想自动使用一个可用端口请使用 port: 'auto'
+    port: 'auto',
+
+    // 启用 gzip compression 压缩
     compress: true,
+
+    // 告诉 dev-server 在服务器已经启动后打开浏览器
     open: false,
+
+    // 用于方便的开发使用了 HTML5 History API 的单页应用。 这类单页应用要求服务器在针对任何命中的路由时都返回一个对应的 HTML 文件，例如在访问 http://localhost/user 和 http://localhost/home 时都返回 index.html 文件， 浏览器端的 JavaScript 代码会从 URL 里解析出当前页面的状态，显示出对应的界面。
     historyApiFallback: {
       rewrites: [
         { from: /.*/, to: '/public/index.html' }

@@ -7,7 +7,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
   devtool: 'eval-cheap-module-source-map',
-  target: 'web',
   stats: 'errors-only',
   devServer: {
     static: false,
@@ -20,7 +19,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       }
     },
     hot: true,
-    port: 8080,
+    port: 'auto',
     compress: true,
     open: false,
     historyApiFallback: {
