@@ -8,14 +8,14 @@
 </template>
 
 <style lang="scss">
-  @font-face {
-    font-family: 'ffy';
-    src : url('./assets/fonts/PingFang SC Medium.ttf');
-  }
+  // @font-face {
+  //   font-family: 'ffy';
+  //   src : url('./assets/fonts/PingFang SC Medium.ttf');
+  // }
 
   #app {
     font-size: 16px;
-    font-family: 'ffy';
+    // font-family: 'ffy';
     color: blue;
   }
 </style>

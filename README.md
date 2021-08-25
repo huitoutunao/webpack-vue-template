@@ -356,7 +356,7 @@ module.exports = {
 
 ## 开发服务器
 
-每次打包后都需要手动的点击生成的 `index.html` 看效果，为了提高工程效率，我们把这一步交给 webpack 来处理。
+之前每次打包后都需要手动点击生成的 `index.html` 看效果，为了提高工程效率，我们把这一步交给 webpack 来处理。
 
 1、安装依赖 `webpack-dev-server webpack-merge`。
 ```sh
@@ -563,7 +563,7 @@ module.exports = {
 
 主要在 `webpack.prod.js` 添加配置。
 
-1、压缩 `html`
+1、压缩 `html` 文件。
 ```js
 'use strict'
 const { merge } = require('webpack-merge')
@@ -588,6 +588,12 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 
 module.exports = prodWebpackConfig
 ```
+
+2、压缩 `css` 文件
+[参考链接](https://juejin.cn/post/6910913987613818894#heading-8)
+
+## Source Map
+[参考链接4.3](https://segmentfault.com/a/1190000040251317)
 
 ## 结语
 
