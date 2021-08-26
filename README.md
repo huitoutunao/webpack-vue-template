@@ -755,6 +755,8 @@ module.exports = {
 }
 ```
 
+这个[参考链接1](https://webpack.docschina.org/loaders/babel-loader/#troubleshooting)、[参考链接2](https://webpack.docschina.org/loaders/thread-loader/)
+
 ## Source Map
 [参考链接4.3](https://segmentfault.com/a/1190000040251317)
 
