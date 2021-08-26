@@ -663,7 +663,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:16].css' // 提取的 css 文件放到 css 文件夹下
+      filename: 'css/[name].[contenthash:16].css', // 提取的 css 文件放到 css 文件夹下
+      chunkFilename: 'css/[name].[contenthash:16].css' // 此选项决定了非入口的 chunk 文件名称
     })
   ]
   // ...其他配置
