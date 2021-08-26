@@ -591,7 +591,7 @@ module.exports = prodWebpackConfig
 
 2、压缩 `css` 文件
 
-2-1. 安装 `MiniCssExtractPlugin` 依赖
+2-1、安装 `MiniCssExtractPlugin` 依赖
 > 本插件会将 CSS 提取到单独的文件中，为每个包含 CSS 的 JS 文件创建一个 CSS 文件，并且支持 CSS 和 SourceMaps 的按需加载。
 
 > 与 extract-text-webpack-plugin 相比优势：异步加载；没有重复的编译（性能）；更容易使用；特别针对 CSS 开发。
@@ -673,7 +673,7 @@ module.exports = {
 
 这里的配置参数[参考链接1](https://webpack.docschina.org/plugins/mini-css-extract-plugin/)、[参考链接2](https://vue-loader.vuejs.org/zh/guide/extract-css.html#webpack-4)
 
-2-2. 安装 `CssMinimizerPlugin` 依赖
+2-2、安装 `CssMinimizerPlugin` 依赖
 [参考链接](https://juejin.cn/post/6910913987613818894#heading-8)
 ```sh
 $ yarn add -D css-minimizer-webpack-plugin
@@ -695,6 +695,64 @@ module.exports = {
   // ...其他配置
 }
 ```
+
+3、压缩 `js` 文件
+
+> webpack v5 开箱即带有最新版本的 terser-webpack-plugin。如果你使用的是 webpack v5 或更高版本，同时希望自定义配置，那么仍需要安装 terser-webpack-plugin。
+
+安装 `terser-webpack-plugin` 依赖，配置如下：
+```sh
+$ yarn add -D terser-webpack-plugin
+# 或
+$ npm install -D terser-webpack-plugin
+```
+
+```js
+// webpack.prod.js
+
+const TerserPlugin = require('terser-webpack-plugin')
+
+module.exports = {
+  // ...其他配置
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          toplevel: true // 最高级别，删除无用代码
+        }
+      })
+    ]
+  }
+  // ...其他配置
+}
+```
+
+安装 `thread-loader` 依赖，配置如下：
+```sh
+$ yarn add -D thread-loader
+# 或
+$ npm install -D thread-loader
+```
+
+```js
+// webpack.base.js
+
+module.exports = {
+  // ...其他配置
+  module: {
+    rules: [{
+      test: /\.js$/,
+      use: [
+        'thread-loader', // 其后 loader 开启独立 worker 池
+        {
+          loader: 'babel-loader?cacheDirectory=true' // 开启 babel-loader 缓存
+        }
+      ],
+      exclude: path.resolve(__dirname, '../node_modules')
+    }]
+  }
+  // ...其他配置
+}
 
 ## Source Map
 [参考链接4.3](https://segmentfault.com/a/1190000040251317)

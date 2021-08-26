@@ -4,12 +4,18 @@ const { merge } = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
   optimization: {
     minimizer: [
-      new CssMinimizerPlugin()
+      new CssMinimizerPlugin(),
+      new TerserPlugin({
+        terserOptions: {
+          toplevel: true
+        }
+      })
     ]
   },
   plugins: [

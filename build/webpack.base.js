@@ -22,9 +22,12 @@ module.exports = {
       include: path.resolve(__dirname, '../src')
     }, {
       test: /\.js$/,
-      use: {
-        loader: 'babel-loader'
-      },
+      use: [
+        'thread-loader',
+        {
+          loader: 'babel-loader?cacheDirectory=true'
+        }
+      ],
       exclude: path.resolve(__dirname, '../node_modules')
     }, {
       test: /\.css$/,
