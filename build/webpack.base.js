@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   context: path.resolve(__dirname, '../'),
@@ -8,7 +9,7 @@ module.exports = {
     app: './src/main.js'
   },
   output: {
-    filename: '[name].[contenthash].js',
+    filename: '[name].[contenthash:16].js',
     path: path.resolve(__dirname, '../dist'),
     clean: true
   },
@@ -27,10 +28,21 @@ module.exports = {
       exclude: path.resolve(__dirname, '../node_modules')
     }, {
       test: /\.css$/,
-      use: ['vue-style-loader', 'css-loader']
+      use: [
+        process.env.NODE_ENV !== 'production'
+          ? 'vue-style-loader'
+          : MiniCssExtractPlugin.loader,
+        'css-loader'
+      ]
     }, {
       test: /\.scss$/,
-      use: ['vue-style-loader', 'css-loader', 'sass-loader']
+      use: [
+        process.env.NODE_ENV !== 'production'
+          ? 'vue-style-loader'
+          : MiniCssExtractPlugin.loader,
+        'css-loader',
+        'sass-loader'
+      ]
     }, {
       test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
       type: 'asset',
@@ -67,6 +79,9 @@ module.exports = {
     }]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:16].css'
+    })
   ]
 }

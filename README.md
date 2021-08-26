@@ -590,7 +590,110 @@ module.exports = prodWebpackConfig
 ```
 
 2、压缩 `css` 文件
+
+2-1. 安装 `MiniCssExtractPlugin` 依赖
+> 本插件会将 CSS 提取到单独的文件中，为每个包含 CSS 的 JS 文件创建一个 CSS 文件，并且支持 CSS 和 SourceMaps 的按需加载。
+
+> 与 extract-text-webpack-plugin 相比优势：异步加载；没有重复的编译（性能）；更容易使用；特别针对 CSS 开发。
+
+```sh
+$ yarn add -D mini-css-extract-plugin
+# 或
+$ npm install -D mini-css-extract-plugin
+```
+
+借助 webpack 自带的插件 [DefinePlugin](https://webpack.docschina.org/plugins/define-plugin/) 设置环境变量：
+```js
+// webpack.dev.js
+
+const webpack = require('webpack')
+
+module.exports = {
+  // ...其他配置
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    })
+  ]
+  // ...其他配置
+}
+```
+
+```js
+// webpack.prod.js
+
+const webpack = require('webpack')
+
+module.exports = {
+  // ...其他配置
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+  ]
+  // ...其他配置
+}
+```
+
+配置 `webpack.base.js` 文件如下：
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+module.exports = {
+  // ...其他配置
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: [
+        process.env.NODE_ENV !== 'production'
+          ? 'vue-style-loader'
+          : MiniCssExtractPlugin.loader, // 放在 css-loader 前面
+        'css-loader'
+      ]
+    }, {
+      test: /\.scss$/,
+      use: [
+        process.env.NODE_ENV !== 'production'
+          ? 'vue-style-loader'
+          : MiniCssExtractPlugin.loader,
+        'css-loader',
+        'sass-loader'
+      ]
+    }]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:16].css' // 提取的 css 文件放到 css 文件夹下
+    })
+  ]
+  // ...其他配置
+}
+```
+
+这里的配置参数[参考链接1](https://webpack.docschina.org/plugins/mini-css-extract-plugin/)、[参考链接2](https://vue-loader.vuejs.org/zh/guide/extract-css.html#webpack-4)
+
+2-2. 安装 `CssMinimizerPlugin` 依赖
 [参考链接](https://juejin.cn/post/6910913987613818894#heading-8)
+```sh
+$ yarn add -D css-minimizer-webpack-plugin
+# 或
+$ npm install -D css-minimizer-webpack-plugin
+```
+
+配置 `webpack.prod.js` 文件如下：
+```js
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+
+module.exports = {
+  // ...其他配置
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin()
+    ]
+  }
+  // ...其他配置
+}
+```
 
 ## Source Map
 [参考链接4.3](https://segmentfault.com/a/1190000040251317)
