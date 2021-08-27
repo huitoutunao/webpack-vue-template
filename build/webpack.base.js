@@ -11,9 +11,6 @@ module.exports = {
   output: {
     filename: '[name].[contenthash:16].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: process.env.NODE_ENV !== 'production'
-      ? '/'
-      : './',
     clean: true
   },
   module: {
