@@ -1,4 +1,5 @@
 'use strict'
+const path = require('path')
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base')
@@ -8,6 +9,11 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    filename: path.posix.join('js', '[name].[chunkhash].js'),
+    chunkFilename: path.posix.join('js', '[id].[chunkhash].js')
+  },
   optimization: {
     minimizer: [
       new CssMinimizerPlugin(),
