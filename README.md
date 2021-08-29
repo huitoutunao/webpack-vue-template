@@ -779,6 +779,7 @@ module.exports = {
 
 - [深入浅出 Webpack](https://webpack.wuhaolin.cn/)
 - [从零使用 Webpack5 搭建一个完整的 Vue3 的开发环境](https://juejin.cn/post/6924180659829211143)
+- [进一步优化](https://www.zhihu.com/zvideo/1415352874381930496)
 
 ## 优化控制台信息参考资料
 
