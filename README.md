@@ -572,6 +572,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
+  devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       title: 'vue start',
@@ -776,9 +777,6 @@ module.exports = {
   // ...其他配置
 }
 ```
-
-## Source Map
-[参考链接4.3](https://segmentfault.com/a/1190000040251317)
 
 ## 结语
 

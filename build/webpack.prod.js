@@ -9,6 +9,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 const prodWebpackConfig = merge(baseWebpackConfig, {
   mode: 'production',
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: path.posix.join('js', '[name].[chunkhash].js'),
