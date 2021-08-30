@@ -4,7 +4,7 @@
   "description": "webpack5 vue template",
   "private": true,
   "scripts": {
-    "serve": "webpack serve --config build/webpack.dev.js",
+    "serve": "webpack serve --progress --config build/webpack.dev.js",
     "build": "webpack --config build/webpack.prod.js"
   },
   "dependencies": {
