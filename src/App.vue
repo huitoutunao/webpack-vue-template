@@ -1,23 +1,12 @@
 <template>
   <div id="app">
-    <p>Hello World!</p>
-    <p>test gg</p>
-    <p class="word">Index Home Test</p>
-    <comp></comp>
-    <img src="./assets/images/logo.png" alt="">
-    <!-- <img src="./assets/images/photo.png" alt=""> -->
-    <div class="img"></div>
+    <router-view/>
   </div>
 </template>
 
 <script>
-  import Comp from '@/components/Comp'
-
   export default {
-    name: 'App',
-    components: {
-      Comp
-    }
+    name: 'App'
   }
 </script>
 
@@ -31,20 +20,5 @@
     font-size: 16px;
     // font-family: 'ffy';
     color: blue;
-  }
-  .word {
-    font-size: 20px;
-    color: brown;
-    text-align: center;
-  }
-  .img {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    background-image: url('./assets/images/photo.png');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
   }
 </style>
