@@ -3,11 +3,23 @@
     <p>Hello World!</p>
     <p>test gg</p>
     <p class="word">Index Home Test</p>
+    <comp></comp>
     <img src="./assets/images/logo.png" alt="">
     <!-- <img src="./assets/images/photo.png" alt=""> -->
     <div class="img"></div>
   </div>
 </template>
+
+<script>
+  import Comp from '@/components/Comp'
+
+  export default {
+    name: 'App',
+    components: {
+      Comp
+    }
+  }
+</script>
 
 <style lang="scss">
   // @font-face {

@@ -757,6 +757,26 @@ module.exports = {
 
 这个[参考链接1](https://webpack.docschina.org/loaders/babel-loader/#troubleshooting)、[参考链接2](https://webpack.docschina.org/loaders/thread-loader/)
 
+## 路径别名
+```js
+// webpack.base.js
+
+module.exports = {
+  // ...其他配置
+  resolve: {
+    // 尝试按顺序解析这些后缀名。如果有多个文件有相同的名字，但后缀名不同，webpack 会解析列在数组首位的后缀的文件 并跳过其余的后缀。因此引入文件时可以不写后缀名称。
+    extensions: ['.js', '.vue', '.json'],
+
+    // 创建 import 或 require 的别名，来确保模块引入变得更简单。
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': path.resolve(__dirname, '../src')
+    }
+  },
+  // ...其他配置
+}
+```
+
 ## Source Map
 [参考链接4.3](https://segmentfault.com/a/1190000040251317)
 
