@@ -11,6 +11,7 @@
 </script>
 
 <style lang="scss">
+  @import '@/assets/styles/common.scss';
   // @font-face {
   //   font-family: 'ffy';
   //   src : url('./assets/fonts/PingFang SC Medium.ttf');

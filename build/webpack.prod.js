@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
@@ -38,6 +39,10 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
         removeComments: true,
         removeRedundantAttributes: true
       }
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:16].css',
+      chunkFilename: 'css/[name].[contenthash:16].css'
     })
   ],
   performance: {

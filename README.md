@@ -624,12 +624,17 @@ module.exports = {
 // webpack.prod.js
 
 const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   // ...其他配置
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:16].css', // 提取的 css 文件放到 css 文件夹下
+      chunkFilename: 'css/[name].[contenthash:16].css' // 此选项决定了非入口的 chunk 文件名称
     })
   ]
   // ...其他配置
@@ -639,6 +644,7 @@ module.exports = {
 配置 `webpack.base.js` 文件如下：
 ```js
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   // ...其他配置
@@ -646,28 +652,18 @@ module.exports = {
     rules: [{
       test: /\.css$/,
       use: [
-        process.env.NODE_ENV !== 'production'
-          ? 'vue-style-loader'
-          : MiniCssExtractPlugin.loader, // 放在 css-loader 前面
+        devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader, // 放在 css-loader 前面
         'css-loader'
       ]
     }, {
       test: /\.scss$/,
       use: [
-        process.env.NODE_ENV !== 'production'
-          ? 'vue-style-loader'
-          : MiniCssExtractPlugin.loader,
+        devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
         'css-loader',
         'sass-loader'
       ]
     }]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:16].css', // 提取的 css 文件放到 css 文件夹下
-      chunkFilename: 'css/[name].[contenthash:16].css' // 此选项决定了非入口的 chunk 文件名称
-    })
-  ]
+  }
   // ...其他配置
 }
 ```
@@ -777,6 +773,8 @@ module.exports = {
   // ...其他配置
 }
 ```
+
+流程走到这里，webpack5 配置 vue 项目的基础模板就完成了，后面可以根据自己项目需求，安装和配置额外的依赖包。
 
 ## 结语
 
