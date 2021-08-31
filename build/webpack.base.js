@@ -2,6 +2,7 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const WebpackBar = require('webpackbar')
 
 const devMode = process.env.NODE_ENV !== 'production'
 
@@ -87,6 +88,10 @@ module.exports = {
     }]
   },
   plugins: [
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new WebpackBar({
+      name: 'webpack-vue-template',
+      reporters: ['fancy']
+    })
   ]
 }

@@ -774,6 +774,31 @@ module.exports = {
 }
 ```
 
+## 优化控制台
+
+安装 `webpackbar` 依赖包
+```sh
+$ yarn add -D webpackbar
+# 或
+$ npm install -D webpackbar
+```
+```js
+// webpack.base.js
+
+const WebpackBar = require('webpackbar')
+
+module.exports = {
+  // ...其他配置
+  plugins: [
+    new WebpackBar({
+      name: 'webpack-vue-template',
+      reporters: ['fancy']
+    })
+  ]
+  // ...其他配置
+}
+```
+
 流程走到这里，webpack5 配置 vue 项目的基础模板就完成了，后面可以根据自己项目需求，安装和配置额外的依赖包。
 
 ## 结语
@@ -795,7 +820,6 @@ module.exports = {
 
 - [深入浅出 Webpack](https://webpack.wuhaolin.cn/)
 - [从零使用 Webpack5 搭建一个完整的 Vue3 的开发环境](https://juejin.cn/post/6924180659829211143)
-- [进一步优化](https://www.zhihu.com/zvideo/1415352874381930496)
 
 ## 优化控制台信息参考资料
 
