@@ -3,6 +3,11 @@
   "plugins": [
     ["@babel/plugin-transform-runtime", {
       "corejs": 3
-    }]
+    }],
+    ["import", {
+      "libraryName": "vant",
+      "libraryDirectory": "es",
+      "style": true
+    }, "vant"]
   ]
 }

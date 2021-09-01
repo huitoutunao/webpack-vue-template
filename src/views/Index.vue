@@ -2,7 +2,7 @@
   <div class="page">
     <h1>Hello Index</h1>
     <comp></comp>
-    <router-link to="/about">About</router-link>
+    <van-button to="/about" type="primary">About</van-button>
     <div class="img"><img src="../assets/images/logo.png" alt=""></div>
   </div>
 </template>
