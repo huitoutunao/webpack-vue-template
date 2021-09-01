@@ -1,10 +1,9 @@
 <template>
   <div class="page">
-    <p class="word">Hello Index</p>
+    <h1>Hello Index</h1>
     <comp></comp>
+    <router-link tag="p" to="/about">About</router-link>
     <img src="../assets/images/logo.png" alt="">
-    <div class="img"></div>
-    <router-link to="/about">跳转关于</router-link>
   </div>
 </template>
 
@@ -23,19 +22,9 @@
   .page {
     padding: 30px;
   }
-  .word {
+  h1 {
     font-size: 20px;
     color: brown;
     text-align: center;
-  }
-  .img {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    background-image: url('../assets/images/photo.png');
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
   }
 </style>

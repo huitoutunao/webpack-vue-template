@@ -799,7 +799,7 @@ module.exports = {
 }
 ```
 
-流程走到这里，webpack5 配置 vue 项目的基础模板就完成了，后面可以根据自己项目需求，安装和配置额外的依赖包。
+流程走到这里，webpack5 配置 vue2.x 项目的基础模板就完成了，后面可以根据自己的项目需求，安装和配置额外的依赖包。
 
 ## 结语
 
@@ -820,12 +820,3 @@ module.exports = {
 
 - [深入浅出 Webpack](https://webpack.wuhaolin.cn/)
 - [从零使用 Webpack5 搭建一个完整的 Vue3 的开发环境](https://juejin.cn/post/6924180659829211143)
-
-## 优化控制台信息参考资料
-
-[webpack vue info](https://segmentfault.com/a/1190000014804826#articleHeader17)
-[issuer](https://github.com/webpack/webpack-dev-server/issues/2758)
-[friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin)
-[chalk](https://www.npmjs.com/package/chalk)
-[address](https://www.npmjs.com/package/address)
-[portfinder](https://www.npmjs.com/package/portfinder)
