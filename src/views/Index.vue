@@ -2,8 +2,8 @@
   <div class="page">
     <h1>Hello Index</h1>
     <comp></comp>
-    <router-link tag="p" to="/about">About</router-link>
-    <img src="../assets/images/logo.png" alt="">
+    <router-link to="/about">About</router-link>
+    <div class="img"><img src="../assets/images/logo.png" alt=""></div>
   </div>
 </template>
 
