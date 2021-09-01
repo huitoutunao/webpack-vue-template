@@ -30,3 +30,53 @@ npm install -D babel-plugin-import
 }
 ```
 
+## 浏览器适配
+
+这里使用 Viewport 布局。安装 [postcss-px-to-viewport](https://github.com/evrone/postcss-px-to-viewport/blob/master/README_CN.md) 依赖。
+
+```sh
+yarn add -D postcss-loader postcss postcss-px-to-viewport
+或
+npm install -D postcss-loader postcss postcss-px-to-viewport
+```
+
+根目录创建 `postcss.config.js`
+```js
+module.exports = {
+  plugins: [
+    ['postcss-px-to-viewport', {
+      viewportWidth: 375
+    }]
+  ]
+}
+```
+
+在 `webpack.base.js` 添加配置如下：
+```js
+module.exports = {
+  // ...其他配置
+  module: {
+    rules: [
+    // ...其他配置
+    {
+      test: /\.css$/,
+      use: [
+        devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
+        'css-loader',
+        'postcss-loader'
+      ]
+    }, {
+      test: /\.scss$/,
+      use: [
+        devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
+        'css-loader',
+        'sass-loader',
+        'postcss-loader'
+      ]
+    },
+    // ...其他配置
+    ]
+  }
+}
+```
+

@@ -43,14 +43,16 @@ module.exports = {
       test: /\.css$/,
       use: [
         devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
-        'css-loader'
+        'css-loader',
+        'postcss-loader'
       ]
     }, {
       test: /\.scss$/,
       use: [
         devMode ? 'vue-style-loader' : MiniCssExtractPlugin.loader,
         'css-loader',
-        'sass-loader'
+        'sass-loader',
+        'postcss-loader'
       ]
     }, {
       test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
