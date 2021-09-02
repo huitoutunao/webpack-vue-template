@@ -84,3 +84,59 @@ module.exports = {
 
 ### ESLint
 
+1、安装 `eslint eslint-plugin-import` 依赖。
+```sh
+yarn add -D eslint eslint-plugin-import
+或
+npm install -D eslint eslint-plugin-import
+```
+
+2、使用 Airbnb 的 ESLint 扩展。
+```sh
+yarn add -D eslint-config-airbnb-base
+或
+npm install -D eslint-config-airbnb-base
+```
+
+3、根目录创建文件 `.eslintrc.js`，这是应用校验规则的配置文件。
+
+安装解析器 `@babel/eslint-parser`，该依赖包允许你使用 JavaScript 实验特性的时候，依然能够用上Eslint语法检查。
+```sh
+yarn add -D @babel/eslint-parser
+或
+npm install -D @babel/eslint-parser
+```
+```js
+module.exports = {
+  root: true,
+
+  // 解析器
+  parser: '@babel/eslint-parser',
+
+  // 解析选项
+  parserOptions: {
+    // 支持 ECMAScript 的版本
+    ecmaVersion: 6,
+
+    // 默认 script。如果你的代码是 ECMAScript 模块，可以使用 module 类型
+    sourceType: 'module',
+  },
+
+  // 扩展
+  extends: ['airbnb-base'],
+
+  // 一个环境定义了一组预定义的全局变量
+  env: {
+    // 浏览器环境中的全局变量
+    browser: true,
+  },
+}
+```
+
+4、根目录创建 `.eslintignore`，这是配置忽略校验规则的文件。
+```
+/public
+/dist
+/node_modules
+```
+
