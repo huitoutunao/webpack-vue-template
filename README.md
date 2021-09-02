@@ -601,7 +601,22 @@ $ yarn add -D mini-css-extract-plugin
 $ npm install -D mini-css-extract-plugin
 ```
 
-借助 webpack 自带的插件 [DefinePlugin](https://webpack.docschina.org/plugins/define-plugin/) 设置环境变量：
+先安装 [cross-env](https://www.npmjs.com/package/cross-env) 依赖，然后借助 webpack 自带的插件 [DefinePlugin](https://webpack.docschina.org/plugins/define-plugin/) 设置环境变量：
+```sh
+$ yarn add -D cross-env
+# 或
+$ npm install -D cross-env
+```
+```json
+{
+  // ...其他代码
+  "scripts": {
+    "serve": "cross-env NODE_ENV=development webpack serve --config build/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js"
+  },
+  // ...其他代码
+}
+```
 ```js
 // webpack.dev.js
 
