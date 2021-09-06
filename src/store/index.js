@@ -4,11 +4,11 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state: {
-      text: 'hello comp'
-    },
-    mutations: {
-    },
-    actions: {
-    }
+  state: {
+    text: 'hello comp',
+  },
+  mutations: {
+  },
+  actions: {
+  },
 })

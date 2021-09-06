@@ -19,6 +19,17 @@ module.exports = {
       optionalDependencies: false,
       peerDependencies: false,
     }],
+    'import/extensions': ['error', 'ignorePackages', {
+      vue: 'never',
+      js: 'never',
+    }],
     semi: ['error', 'never'],
+  },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: './build/webpack.base.js',
+      },
+    },
   },
 }

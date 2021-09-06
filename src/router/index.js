@@ -9,26 +9,26 @@ const routes = [{
   name: 'index',
   component: Index,
   meta: {
-      title: '首页'
-  }
+    title: '首页',
+  },
 }, {
   path: '/about',
   name: 'about',
   component: () => import(/* webpackChunkName: "about" */ '@/views/About'),
   meta: {
-      title: '关于'
-  }
+    title: '关于',
+  },
 }, {
   path: '/detail',
   name: 'detail',
   component: () => import(/* webpackChunkName: "detail" */ '@/views/Detail'),
   meta: {
-      title: '详情'
-  }
+    title: '详情',
+  },
 }]
 
 const router = new VueRouter({
-  routes
+  routes,
 })
 
 export default router

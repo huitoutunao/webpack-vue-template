@@ -148,9 +148,9 @@ module.exports = {
 
 4、对 vue 文件的代码进行检查。
 ```sh
-yarn add -D eslint-plugin-vue vue-eslint-parser
+yarn add -D eslint-plugin-vue vue-eslint-parser eslint-import-resolver-webpack
 或
-npm install -D eslint-plugin-vue vue-eslint-parser
+npm install -D eslint-plugin-vue vue-eslint-parser eslint-import-resolver-webpack
 ```
 
 修改 `.eslintrc.js` 配置文件如下：
@@ -168,6 +168,22 @@ module.exports = {
     'airbnb-base',
     'plugin:vue/recommended',
   ],
+  rules: {
+    // ...其他配置
+    // 省略文件扩展名
+    'import/extensions': ['error', 'ignorePackages', {
+      vue: 'never',
+      js: 'never',
+    }],
+  },
+  settings: {
+    'import/resolver': {
+      // 使用 webpack 配置的路径别名
+      webpack: {
+        config: './build/webpack.base.js',
+      },
+    },
+  },
   // ...其他配置
 }
 ```

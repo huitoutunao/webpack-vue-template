@@ -7,14 +7,14 @@
 <script>
 export default {
   name: 'Comp',
-  data () {
+  data() {
     return {
-      msg: ''
+      msg: '',
     }
   },
-  created () {
+  created() {
     this.msg = this.$store.state.text
-  }
+  },
 }
 </script>
 
