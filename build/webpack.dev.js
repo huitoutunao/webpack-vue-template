@@ -1,8 +1,7 @@
-'use strict'
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
-const baseWebpackConfig = require('./webpack.base')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const baseWebpackConfig = require('./webpack.base')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
@@ -15,8 +14,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       progress: true,
       overlay: {
         warnings: false,
-        errors: true
-      }
+        errors: true,
+      },
     },
     hot: true,
     port: 'auto',
@@ -24,20 +23,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     open: false,
     historyApiFallback: {
       rewrites: [
-        { from: /.*/, to: '/public/index.html' }
-      ]
-    }
+        { from: /.*/, to: '/public/index.html' },
+      ],
+    },
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
     new HtmlWebpackPlugin({
       title: 'vue start',
       filename: 'index.html',
-      template: './public/index.html'
-    })
-  ]
+      template: './public/index.html',
+    }),
+  ],
 })
 
 module.exports = devWebpackConfig

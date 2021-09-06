@@ -9,4 +9,12 @@ module.exports = {
   env: {
     browser: true,
   },
-};
+  rules: {
+    'import/no-extraneous-dependencies': ['error', {
+      devDependencies: true,
+      optionalDependencies: false,
+      peerDependencies: false,
+    }],
+    semi: ['error', 'never'],
+  },
+}

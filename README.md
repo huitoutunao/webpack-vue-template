@@ -130,6 +130,19 @@ module.exports = {
     // 浏览器环境中的全局变量
     browser: true,
   },
+
+  // 定义校验规则
+  rules: {
+    // 修改 require 引入文件警告，参考链接：https://github.com/import-js/eslint-plugin-import/blob/v2.24.2/docs/rules/no-extraneous-dependencies.md
+    'import/no-extraneous-dependencies': ['error', {
+      devDependencies: true,
+      optionalDependencies: false,
+      peerDependencies: false,
+    }],
+
+    // 禁止在语句末尾使用分号 (除了消除以 [、(、/、+ 或 - 开始的语句的歧义)
+    semi: ['error', 'never'],
+  },
 }
 ```
 
