@@ -146,7 +146,41 @@ module.exports = {
 }
 ```
 
-4、根目录创建 `.eslintignore`，这是配置忽略校验规则的文件。
+4、对 vue 文件的代码进行检查。
+```sh
+yarn add -D eslint-plugin-vue vue-eslint-parser
+或
+npm install -D eslint-plugin-vue vue-eslint-parser
+```
+
+修改 `.eslintrc.js` 配置文件如下：
+```js
+module.exports = {
+  // ...其他配置
+  // 配置参考 vue 官方文档：https://eslint.vuejs.org/user-guide/#usage
+  parser: 'vue-eslint-parser',
+  parserOptions: {
+    parser: '@babel/eslint-parser',
+    ecmaVersion: 6,
+    sourceType: 'module',
+  },
+  extends: [
+    'airbnb-base',
+    'plugin:vue/recommended',
+  ],
+  // ...其他配置
+}
+```
+
+修改 `package.json` 文件如下：
+```json
+"scripts": {
+  // ...其他命令
+  "lint": "eslint --ext .js,.vue src" // 这个是检查 src 目录下的 js 和 vue 文件。https://eslint.org/docs/user-guide/command-line-interface
+},
+```
+
+5、根目录创建 `.eslintignore`，这是配置忽略校验规则的文件。
 ```
 /public
 /dist

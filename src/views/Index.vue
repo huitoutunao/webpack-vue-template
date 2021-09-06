@@ -14,6 +14,9 @@
     name: 'Index',
     components: {
       Comp
+    },
+    mounted() {
+      console.log('loading')
     }
   }
 </script>
