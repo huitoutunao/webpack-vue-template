@@ -170,7 +170,7 @@ module.exports = {
   ],
   rules: {
     // ...其他配置
-    // 省略文件扩展名
+    // 省略文件扩展名 https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js
     'import/extensions': ['error', 'ignorePackages', {
       vue: 'never',
       js: 'never',
