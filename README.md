@@ -178,7 +178,7 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      // 使用 webpack 配置的路径别名
+      // 使用 webpack 配置的路径别名 https://github.com/import-js/eslint-plugin-import/blob/main/resolvers/webpack/README.md
       webpack: {
         config: './build/webpack.base.js',
       },
