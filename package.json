@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "cross-env NODE_ENV=development webpack serve --config build/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
-    "lint": "eslint --ext .js build --ext .js,.vue src"
+    "lint": "eslint --fix --ext .js build --ext .js,.vue src"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.3",
@@ -32,6 +32,8 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-vue": "^7.17.0",
     "html-webpack-plugin": "^5.3.2",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
     "mini-css-extract-plugin": "^2.2.0",
     "node-sass": "^6.0.1",
     "postcss": "^8.3.6",

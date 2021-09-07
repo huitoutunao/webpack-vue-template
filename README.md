@@ -192,7 +192,7 @@ module.exports = {
 ```json
 "scripts": {
   // ...其他命令
-  "lint": "eslint --ext .js,.vue src" // 这个是检查 src 目录下的 js 和 vue 文件。https://eslint.org/docs/user-guide/command-line-interface
+  "lint": "eslint --fix --ext .js build --ext .js,.vue src" // 这个是检查 src 目录下的 js 和 vue 文件。https://eslint.org/docs/user-guide/command-line-interface
 },
 ```
 
@@ -201,5 +201,23 @@ module.exports = {
 /public
 /dist
 /node_modules
+```
+
+### 集成 husky 和 lint-staged
+
+上面检查代码是需要手动执行 lint 才有效，这样就有可能忘记或者干脆把自己那一套代码风格提交到仓库，那么前面配置的 eslint 将失去它的意义，所以在 git 提交代码前强制执行代码风格检查，如果不合规范，就不允许提交。
+
+1、安装和配置 husky。
+```sh
+yarn add -D husky
+或
+npm install -D husky
+```
+
+2、安装和配置 lint-staged。
+```sh
+yarn add -D lint-staged
+或
+npm install -D lint-staged
 ```
 

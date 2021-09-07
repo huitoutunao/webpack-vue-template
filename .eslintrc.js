@@ -3,7 +3,7 @@ module.exports = {
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@babel/eslint-parser',
-    ecmaVersion: 6,
+    ecmaVersion: 12,
     sourceType: 'module',
   },
   extends: [
@@ -12,6 +12,7 @@ module.exports = {
   ],
   env: {
     browser: true,
+    node: true,
   },
   rules: {
     'import/no-extraneous-dependencies': ['error', {
