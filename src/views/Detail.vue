@@ -1,5 +1,5 @@
 <template>
   <div>
-    hello detail
+    hello detail vue
   </div>
 </template>
