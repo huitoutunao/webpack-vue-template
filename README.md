@@ -207,17 +207,35 @@ module.exports = {
 
 上面检查代码是需要手动执行 lint 才有效，这样就有可能忘记或者干脆把自己那一套代码风格提交到仓库，那么前面配置的 eslint 将失去它的意义，所以在 git 提交代码前强制执行代码风格检查，如果不合规范，就不允许提交。
 
-1、安装和配置 husky。
+1、安装 husky 和 lint-staged。
 ```sh
-yarn add -D husky
+yarn add -D husky lint-staged
 或
-npm install -D husky
+npm install -D husky lint-staged
 ```
 
-2、安装和配置 lint-staged。
+2、配置 husky 相关文件，[参考官网](https://typicode.github.io/husky/#/?id=features)运行如下命令：
 ```sh
-yarn add -D lint-staged
-或
-npm install -D lint-staged
+yarn husky install
+
+npx husky add .husky/pre-commit "npx lint-staged"
 ```
 
+根目录就会出现 `.husky/pre-commit` 等文件，文件内容如下：
+```
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx lint-staged
+```
+
+3、配置 lint-staged。
+```json
+"scripts": {
+  // ...省略
+  "prepare": "husky install"
+},
+"lint-staged": {
+  "*.{vue,js}": "eslint --fix" // 检测并修复待提交的 vue 和 js 文件
+},
+```
