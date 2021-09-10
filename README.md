@@ -353,6 +353,7 @@ npm install D stylelint stylelint-scss stylelint-order stylelint-config-airbnb s
 {
   "extends": ["stylelint-config-airbnb", "stylelint-prettier/recommended"],
   "rules": {
+    "prettier/prettier": true,
     "max-nesting-depth": 20, // 最深嵌套 20 层
     "color-hex-case": "lower", // 颜色值使用小写
     "color-hex-length": "short" // 颜色值尽可能短
