@@ -29,7 +29,6 @@ module.exports = {
       },
     ],
     semi: ['error', 'never'],
-    // 'prettier/prettier': 'off',
   },
   settings: {
     'import/resolver': {

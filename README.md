@@ -331,10 +331,6 @@ npm install -D eslint-plugin-prettier eslint-config-prettier
 module.exports = {
   // ...省略
   extends: ['plugin:vue/recommended', 'airbnb-base', 'plugin:prettier/recommended'],
-  rules: {
-    // ...省略
-    'prettier/prettier': 'off',
-  }
   // ...省略
 }
 ```
