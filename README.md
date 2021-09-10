@@ -337,11 +337,11 @@ module.exports = {
 
 ### 集成 stylelint 配置
 
-1、安装 stylelint、stylelint-scss、stylelint-order、 [stylelint-config-airbnb](https://github.com/airbnb/css) 和 stylelint-config-prettier。
+1、安装 stylelint、stylelint-scss、stylelint-order、 [stylelint-config-airbnb](https://github.com/airbnb/css)、stylelint-prettier 和 stylelint-config-prettier。
 ```sh
-yarn add -D stylelint stylelint-scss stylelint-order stylelint-config-airbnb stylelint-config-prettier
+yarn add -D stylelint stylelint-scss stylelint-order stylelint-config-airbnb stylelint-prettier stylelint-config-prettier
 或
-npm install D stylelint stylelint-scss stylelint-order stylelint-config-airbnb stylelint-config-prettier
+npm install D stylelint stylelint-scss stylelint-order stylelint-config-airbnb stylelint-prettier stylelint-config-prettier
 ```
 
 `stylelint-config-prettier`：解决 stylelint 和 Prettier 的冲突。
@@ -351,7 +351,7 @@ npm install D stylelint stylelint-scss stylelint-order stylelint-config-airbnb s
 // .stylelintrc.json
 
 {
-  "extends": ["stylelint-config-airbnb", "stylelint-config-prettier"],
+  "extends": ["stylelint-config-airbnb", "stylelint-prettier/recommended"],
   "rules": {
     "max-nesting-depth": 20, // 最深嵌套 20 层
     "color-hex-case": "lower", // 颜色值使用小写
@@ -366,4 +366,18 @@ npm install D stylelint stylelint-scss stylelint-order stylelint-config-airbnb s
 # 测试和打包目录
 test/
 dist/
+```
+```json
+// package.json
+
+{
+  // ...省略
+  "scripts": {
+    "lint:css": "stylelint **/*.{vue,htm,html,css,sss,less,scss,sass}",
+  },
+  "lint-staged": {
+    "**/*.{vue,htm,html,css,sss,less,scss,sass}": "stylelint --fix"
+  },
+  // ...省略
+}
 ```

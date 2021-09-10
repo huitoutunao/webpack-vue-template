@@ -1,6 +1,7 @@
 {
-  "extends": ["stylelint-config-airbnb", "stylelint-config-prettier"],
+  "extends": ["stylelint-config-airbnb", "stylelint-prettier/recommended"],
   "rules": {
+    "prettier/prettier": true,
     "max-nesting-depth": 20,
     "color-hex-case": "lower",
     "color-hex-length": "short"

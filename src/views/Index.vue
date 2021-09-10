@@ -34,7 +34,7 @@ export default {
 }
 h1 {
   font-size: 20px;
-  color: brown;
+  color: #fff;
   text-align: center;
 }
 </style>
