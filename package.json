@@ -7,11 +7,13 @@
     "serve": "cross-env NODE_ENV=development webpack serve --config build/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
     "format": "npx prettier --write ./src",
-    "lint": "eslint --fix ./src --ext .js,.vue ./build --ext .js",
+    "lint:js": "eslint --fix ./src --ext .js,.vue ./build --ext .js",
+    "lint:css": "stylelint **/*.{vue,htm,html,css,sss,less,scss,sass}",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{vue,js}": "eslint --fix"
+    "*.{vue,js}": "eslint --fix",
+    "**/*.{vue,htm,html,css,sss,less,scss,sass}": "stylelint --fix"
   },
   "dependencies": {
     "@babel/runtime": "^7.15.3",
@@ -48,6 +50,11 @@
     "postcss-px-to-viewport": "^1.1.1",
     "prettier": "2.4.0",
     "sass-loader": "^12.1.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-airbnb": "^0.0.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.20.1",
     "terser-webpack-plugin": "^5.1.4",
     "thread-loader": "^3.0.4",
     "vue-eslint-parser": "^7.11.0",

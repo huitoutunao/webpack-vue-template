@@ -334,3 +334,26 @@ module.exports = {
   // ...省略
 }
 ```
+
+### 集成 stylelint 配置
+
+1、安装 stylelint、stylelint-scss、stylelint-order、 [stylelint-config-airbnb](https://github.com/airbnb/css) 和 stylelint-config-prettier。
+```sh
+yarn add -D stylelint stylelint-scss stylelint-order stylelint-config-airbnb stylelint-config-prettier
+或
+npm install D stylelint stylelint-scss stylelint-order stylelint-config-airbnb stylelint-config-prettier
+```
+
+`stylelint-config-prettier`：解决 stylelint 和 Prettier 的冲突。
+
+2、配置相关规则文件：
+```json
+{
+  "extends": ["stylelint-config-airbnb"],
+  "rules": {
+    "max-nesting-depth": 20, // 最深嵌套 20 层
+    "color-hex-case": "lower", // 颜色值使用小写
+    "color-hex-length": "short" // 颜色值尽可能短
+  }
+}
+```

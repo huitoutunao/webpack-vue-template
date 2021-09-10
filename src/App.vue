@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <router-view />
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
 <style lang="scss">
 @import '@/assets/styles/common.scss';
 
-#app {
+.app {
   font-size: 16px;
   color: blue;
 }
