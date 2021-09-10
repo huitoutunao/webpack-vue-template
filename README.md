@@ -348,12 +348,22 @@ npm install D stylelint stylelint-scss stylelint-order stylelint-config-airbnb s
 
 2、配置相关规则文件：
 ```json
+// .stylelintrc.json
+
 {
-  "extends": ["stylelint-config-airbnb"],
+  "extends": ["stylelint-config-airbnb", "stylelint-config-prettier"],
   "rules": {
     "max-nesting-depth": 20, // 最深嵌套 20 层
     "color-hex-case": "lower", // 颜色值使用小写
     "color-hex-length": "short" // 颜色值尽可能短
   }
 }
+```
+```json
+// .stylelintignore
+
+# .stylelintignore
+# 测试和打包目录
+test/
+dist/
 ```

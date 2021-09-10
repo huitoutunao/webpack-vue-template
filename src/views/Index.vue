@@ -32,7 +32,6 @@ export default {
 .page {
   padding: 30px;
 }
-
 h1 {
   font-size: 20px;
   color: brown;
