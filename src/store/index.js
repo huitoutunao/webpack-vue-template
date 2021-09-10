@@ -7,8 +7,6 @@ export default new Vuex.Store({
   state: {
     text: 'hello comp',
   },
-  mutations: {
-  },
-  actions: {
-  },
+  mutations: {},
+  actions: {},
 })

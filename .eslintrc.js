@@ -7,24 +7,33 @@ module.exports = {
     sourceType: 'module',
   },
   extends: [
-    'airbnb-base',
     'plugin:vue/recommended',
+    'airbnb-base',
+    'plugin:prettier/recommended'
   ],
   env: {
     browser: true,
     node: true,
   },
   rules: {
-    'import/no-extraneous-dependencies': ['error', {
-      devDependencies: true,
-      optionalDependencies: false,
-      peerDependencies: false,
-    }],
-    'import/extensions': ['error', 'ignorePackages', {
-      vue: 'never',
-      js: 'never',
-    }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+        optionalDependencies: false,
+        peerDependencies: false,
+      },
+    ],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        vue: 'never',
+        js: 'never',
+      },
+    ],
     semi: ['error', 'never'],
+    'prettier/prettier': 'off',
   },
   settings: {
     'import/resolver': {

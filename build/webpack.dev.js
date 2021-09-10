@@ -22,9 +22,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     compress: true,
     open: false,
     historyApiFallback: {
-      rewrites: [
-        { from: /.*/, to: '/public/index.html' },
-      ],
+      rewrites: [{ from: /.*/, to: '/public/index.html' }],
     },
   },
   plugins: [

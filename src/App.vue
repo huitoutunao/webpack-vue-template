@@ -11,10 +11,10 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '@/assets/styles/common.scss';
+@import '@/assets/styles/common.scss';
 
-  #app {
-    font-size: 16px;
-    color: blue;
-  }
+#app {
+  font-size: 16px;
+  color: blue;
+}
 </style>

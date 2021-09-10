@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .info {
-    padding: 10px 0;
-  }
+.info {
+  padding: 10px 0;
+}
 </style>

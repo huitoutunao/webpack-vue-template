@@ -1,18 +1,10 @@
 <template>
   <div class="page">
-    <h1>Hello Index</h1>
+    <h1>{{ msg }}</h1>
     <comp />
-    <van-button
-      to="/about"
-      type="primary"
-    >
-      About
-    </van-button>
+    <van-button to="/about" type="primary"> About </van-button>
     <div class="img">
-      <img
-        src="../assets/images/logo.png"
-        alt=""
-      >
+      <img src="../assets/images/logo.png" alt="" />
     </div>
   </div>
 </template>
@@ -25,6 +17,11 @@ export default {
   components: {
     Comp,
   },
+  data() {
+    return {
+      msg: 'Hello Index',
+    }
+  },
   mounted() {
     console.log('loading')
   },
@@ -32,12 +29,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .page {
-    padding: 30px;
-  }
-  h1 {
-    font-size: 20px;
-    color: brown;
-    text-align: center;
-  }
+.page {
+  padding: 30px;
+}
+h1 {
+  font-size: 20px;
+  color: brown;
+  text-align: center;
+}
 </style>
