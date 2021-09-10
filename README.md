@@ -346,6 +346,8 @@ npm install D stylelint stylelint-scss stylelint-order stylelint-config-airbnb s
 
 `stylelint-config-prettier`：解决 stylelint 和 Prettier 的冲突。
 
+这里有一份样式属性顺序[规范](https://github.com/stormwarning/stylelint-config-recess-order)，可以根据实际需求配置。
+
 2、配置相关规则文件：
 ```json
 // .stylelintrc.json
@@ -382,3 +384,5 @@ dist/
   // ...省略
 }
 ```
+
+## 单元测试
