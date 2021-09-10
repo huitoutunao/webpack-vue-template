@@ -30,9 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .page {
-  height: 50px;
   padding: 30px;
-  width: 100px;
 }
 h1 {
   font-size: 20px;
