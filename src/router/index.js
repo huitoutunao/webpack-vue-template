@@ -29,6 +29,14 @@ const routes = [
       title: '详情',
     },
   },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import(/* webpackChunkName: "test" */ '@/views/Test'),
+    meta: {
+      title: '测试',
+    },
+  },
 ]
 
 const router = new VueRouter({

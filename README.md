@@ -386,3 +386,164 @@ dist/
 ```
 
 ## 单元测试
+
+参考资料：
+- [vue-test-utils](https://vue-test-utils.vuejs.org/zh/)
+- [jest](https://www.jestjs.cn/docs/getting-started)
+- [vue-jest](https://github.com/vuejs/vue-jest)
+
+1、安装相关依赖
+```sh
+yarn add -D jest @vue/test-utils vue-jest babel-core@^7.0.0-bridge.0 babel-jest @types/jest eslint-plugin-jest
+或
+npm install -D jest @vue/test-utils vue-jest babel-core@^7.0.0-bridge.0 babel-jest @types/jest eslint-plugin-jest
+```
+
+2、根目录创建 `jest.config.js` 文件。
+```js
+module.exports = {
+  moduleFileExtensions: ['js', 'json', 'vue'],
+  testEnvironment: 'jsdom',
+  transform: {
+    '.*\\.(vue)$': require.resolve('vue-jest'),
+    '^.+\\.js$': require.resolve('babel-jest'),
+  },
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(js)$',
+}
+```
+
+3、修改 `babel.config.js` 文件。
+```js
+module.exports = {
+  presets: ['@babel/preset-env'],
+  plugins: [
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        corejs: 3,
+      },
+    ],
+    [
+      'import',
+      {
+        libraryName: 'vant',
+        libraryDirectory: 'es',
+        style: true,
+      },
+      'vant',
+    ],
+  ],
+  env: {
+    test: {
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              node: 'current',
+            },
+          },
+        ],
+      ],
+      plugins: [
+        [
+          'import',
+          {
+            libraryName: 'vant',
+            libraryDirectory: 'lib',
+            style: true,
+          },
+          'vant',
+        ],
+      ],
+    },
+  },
+}
+```
+
+4、修改 `.eslintrc.js` 文件。
+```js
+module.exports = {
+  // ...省略配置
+  extends: [
+    // ...省略配置
+    'plugin:jest/recommended',
+  ],
+}
+```
+
+5、创建 `Test.vue` 文件。
+```vue
+<template>
+  <div class="test-page">
+    <div class="page-title">Unit Test Page</div>
+    <p>count is: {{ count }}</p>
+    <button @click="increment">increment</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Test',
+  data() {
+    return {
+      count: 0,
+    }
+  },
+  methods: {
+    increment() {
+      this.count += 1
+    },
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+.page-title {
+  font-size: 16px;
+  color: #333;
+}
+</style>
+```
+
+6、创建 `__tests__/jestTest.spec.js` 文件。
+```js
+import { mount } from '@vue/test-utils'
+import Test from '../src/views/Test'
+
+describe('Component', () => {
+  test('Test.vue', async () => {
+    const wrapper = mount(Test)
+    expect(wrapper.html()).toContain('Unit Test Page')
+    expect(wrapper.html()).toContain('count is: 0')
+    await wrapper.find('button').trigger('click')
+    expect(wrapper.html()).toContain('count is: 1')
+  })
+})
+```
+
+7、添加运行命令
+```json
+{
+  "scripts": {
+    "test": "jest"
+  },
+}
+```
+
+8、在 push 代码前执行单元测试。
+运行如下命令，创建 `pre-push` hook 文件
+```sh
+npx husky add .husky/pre-push "npm run test $1"
+```
+
+生成 `pre-push` 文件内容如下：
+```
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run test
+```

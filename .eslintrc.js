@@ -6,7 +6,12 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  extends: ['plugin:vue/recommended', 'airbnb-base', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:vue/recommended',
+    'airbnb-base',
+    'plugin:prettier/recommended',
+    'plugin:jest/recommended',
+  ],
   env: {
     browser: true,
     node: true,
