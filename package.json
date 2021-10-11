@@ -2,6 +2,7 @@
   "name": "vue2-mobile",
   "version": "1.0.0",
   "description": "vue2 mobile template",
+  "author": "huitoutunao",
   "private": true,
   "scripts": {
     "serve": "cross-env NODE_ENV=development webpack serve --config build/webpack.dev.js",
