@@ -186,6 +186,7 @@ module.exports = {
   rules: {
     // ...其他配置
     // 省略文件扩展名 https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb-base/rules/imports.js
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
     'import/extensions': [
       'error',
       'ignorePackages',
