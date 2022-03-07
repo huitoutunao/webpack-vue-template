@@ -356,11 +356,13 @@ module.exports = {
 
 ### 集成 stylelint 配置
 
+[参考资料](https://juejin.cn/post/6878121082188988430)
+
 1、安装 stylelint、stylelint-scss、stylelint-order、 [stylelint-config-airbnb](https://github.com/airbnb/css)、stylelint-prettier 和 stylelint-config-prettier。
 ```sh
 yarn add -D stylelint stylelint-scss stylelint-order stylelint-config-airbnb stylelint-prettier stylelint-config-prettier
 或
-npm install D stylelint stylelint-scss stylelint-order stylelint-config-airbnb stylelint-prettier stylelint-config-prettier
+npm install -D stylelint stylelint-scss stylelint-order stylelint-config-airbnb stylelint-prettier stylelint-config-prettier
 ```
 
 `stylelint-config-prettier`：解决 stylelint 和 Prettier 的冲突。

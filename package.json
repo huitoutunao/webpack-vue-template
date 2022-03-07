@@ -9,7 +9,7 @@
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
     "format": "npx prettier --write ./src",
     "lint:js": "eslint --fix ./src --ext .js,.vue ./build --ext .js",
-    "lint:css": "stylelint **/*.{vue,htm,html,css,sss,less,scss,sass}",
+    "lint:css": "stylelint --fix **/*.{vue,css,scss,sass}",
     "prepare": "husky install",
     "test": "jest"
   },
