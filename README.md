@@ -266,6 +266,24 @@ npx lint-staged
 },
 ```
 
+如果你的项目 `.git` 和 `package.json` 不在同一级目录下面，可以[参考官网](https://typicode.github.io/husky/#/?id=custom-directory)配置。
+
+例如：
+`package.json`，`cd ..` 返回上一级目录，`cd ../../..` 返回上三级目录。
+```json
+{
+  "scripts": {
+    "prepare": "cd ../../.. && husky install deploy/deploy-dir/project/.husky"
+  }
+}
+```
+```sh
+# .husky/pre-commit
+
+cd deploy/deploy-dir/project
+npx lint-staged
+```
+
 ### 集成 Prettier 配置
 
 [参考官网](https://prettier.io/docs/en/install.html)
